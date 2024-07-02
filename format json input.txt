@@ -1,0 +1,16 @@
+{
+    "jumlah kamar tidur": 5,
+    "jumlah kamar mandi": 5,
+    "luas tanah (m2)": 184,
+    "luas bangunan (m2)": 250,
+    "carport (mobil)": 1,
+    "pasokan listrik (watt)": 4400.0,
+    "Kabupaten/Kota": "Jakarta Utara",
+    "kecamatan": "Penjaringan",
+    "kelurahan": "Kamal Muara",
+    "keamanan (ada/tidak)": "ada",
+    "taman (ada/tidak)": "ada",
+    "jarak dengan rumah sakit terdekat (km)": 0.65,
+    "jarak dengan sekolah terdekat (km)": 0.6,
+    "jarak dengan tol terdekat (km)": 2.1
+}

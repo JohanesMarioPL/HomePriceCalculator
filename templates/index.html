@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="apple-touch-icon" sizes="76x76" href="{{ url_for('static', filename='assets/img/apple-icon.png') }}">
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='assets/img/favicon.png') }}">
+  <title>House Pricing Calculator</title>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+  <link href="{{ url_for('static', filename='assets/css/nucleo-icons.css') }}" rel="stylesheet" />
+  <link href="{{ url_for('static', filename='assets/css/nucleo-svg.css') }}" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+  <link href="{{ url_for('static', filename='assets/css/nucleo-svg.css') }}" rel="stylesheet" />
+  <link id="pagestyle" href="{{ url_for('static', filename='assets/css/argon-dashboard.css') }}" rel="stylesheet" />
+</head>
+<body class="g-sidenav-show bg-white-100">
+  <div class="min-height-300 bg-white-100 position-absolute w-100"></div>
+  <main class="main-content position-relative border-radius-lg">
+    <div class="container-fluid py-4">
+      <div class="row">
+        <div class="col-lg-8 mb-lg-0 mb-4">
+          <div class="card">
+            <div class="card-header pb-0">
+              <div class="row">
+                <div class="col-lg-6 col-7">
+                  <h6>House Price Prediction</h6>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <form id="house-form">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="jumlah_kamar_tidur">Jumlah Kamar Tidur</label>
+                      <input type="number" class="form-control" id="jumlah_kamar_tidur" name="jumlah_kamar_tidur" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="jumlah_kamar_mandi">Jumlah Kamar Mandi</label>
+                      <input type="number" class="form-control" id="jumlah_kamar_mandi" name="jumlah_kamar_mandi" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="luas_tanah">Luas Tanah (m²)</label>
+                      <input type="number" class="form-control" id="luas_tanah" name="luas_tanah" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="luas_bangunan">Luas Bangunan (m²)</label>
+                      <input type="number" class="form-control" id="luas_bangunan" name="luas_bangunan" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="carport">Carport (Mobil)</label>
+                      <input type="number" class="form-control" id="carport" name="carport" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="pasokan_listrik">Pasokan Listrik (Watt)</label>
+                      <input type="number" class="form-control" id="pasokan_listrik" name="pasokan_listrik" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="keamanan">Keamanan (Ada/Tidak)</label>
+                      <select class="form-control" id="keamanan" name="keamanan" required>
+                        <option value="null">-- Pilih Ada/Tidak --</option>
+                        <option value="ada">Ada</option>
+                        <option value="tidak">Tidak</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="taman">Taman (Ada/Tidak)</label>
+                      <select class="form-control" id="taman" name="taman" required>
+                        <option value="null">-- Pilih Ada/Tidak --</option>
+                        <option value="ada">Ada</option>
+                        <option value="tidak">Tidak</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="kabupaten_kota">Kabupaten/Kota</label>
+                      <!-- <select class="form-control" id="kabupaten_kota" name="kabupaten_kota" required>
+                        <option value="null">-- Pilih Kabupaten/Kota --</option>
+                        <option value="jakarta_pusat">Jakarta Pusat</option>
+                        <option value="jakarta_utara">Jakarta Utara</option>
+                        <option value="jakarta_barat">Jakarta Barat</option>
+                        <option value="jakarta_selatan">Jakarta Selatan</option>
+                        <option value="jakarta_timur">Jakarta Timur</option>
+                      </select> -->
+                      <input type="text" class="form-control" id="kecamatan" name="kecamatan" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="kecamatan">Kecamatan</label>
+                      <input type="text" class="form-control" id="kecamatan" name="kecamatan" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="kelurahan">Kelurahan</label>
+                      <input type="text" class="form-control" id="kelurahan" name="kelurahan" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="jarak_rumah_sakit">Jarak dengan Rumah Sakit Terdekat (km)</label>
+                      <input type="number" step="0.01" class="form-control" id="jarak_rumah_sakit" name="jarak_rumah_sakit" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="jarak_sekolah">Jarak dengan Sekolah Terdekat (km)</label>
+                      <input type="number" step="0.01" class="form-control" id="jarak_sekolah" name="jarak_sekolah" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="jarak_tol">Jarak dengan Tol Terdekat (km)</label>
+                      <input type="number" step="0.01" class="form-control" id="jarak_tol" name="jarak_tol" required>
+                    </div>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primary mt-3">Predict Price</button>
+              </form>
+              <div class="mt-4">
+                <h6>Predicted Price:</h6>
+                <p id="predicted-price">Rp.00</p>
+                <p id="error-message" style="color: red;"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>  
+    <script src="{{ url_for('static', filename='assets/js/core/popper.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/core/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/plugins/perfect-scrollbar.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/plugins/smooth-scrollbar.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/plugins/chartjs.min.js') }}"></script>
+    <script>
+      document.getElementById('house-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const formData = new FormData(this);
+        const data = Object.fromEntries(formData.entries());
+    
+        console.log('Sending data:', data);
+    
+        fetch('/predict', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then(result => {
+          console.log('Prediction result:', result);
+          if (result.error) {
+            document.getElementById('error-message').textContent = result.error;
+          } else {
+            document.getElementById('predicted-price').textContent = 'Rp.' + result.predicted_price;
+            document.getElementById('error-message').textContent = '';
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          document.getElementById('error-message').textContent = 'An error occurred during prediction. Please try again.';
+        });
+      });
+    </script>
+  </main>
+</body>
+</html>
